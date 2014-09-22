@@ -7,18 +7,30 @@
 	\*-------------------------------------------------*/
 	var construct_item = {
 		Taille : {
-			_width : 15,
-			_height : 15,
+			_width : 50,
+			_height : 50,
 			eta : function(){
-				return '[' + this._width +', '+this._height+']';
+				var tailleTab = new Object();
+				tailleTab['w'] = this._width;
+				tailleTab['h'] = this._height;
+				return tailleTab;
+			},
+			print : function(){
+				return 'position en x : ' + this._width +' et en y : '+this._height;
 			}
 		},
 
 		Position : {
-			_posX : 15,
-			_posY : 0,
+			_posX : 0,
+			_posY : 50,
 			eta : function(){
-				return '[' + this._posX +', '+this._posY+']';
+				var posTab = new Object();
+				posTab['x'] = this._posX;
+				posTab['y'] = this._posY;
+				return posTab;
+			},
+			print : function(){
+				return 'position en x : ' + this._posX +' et en y : '+this._posY;
 			}
 		}
 	};
@@ -69,3 +81,7 @@
 
 	var sol = $.extend(construct_sol,)
 	*/
+
+	/*-------------------------------------------------*\
+					constructeur world
+	\*-------------------------------------------------*/
