@@ -1,0 +1,1 @@
+var joueur = Object.create(player);
