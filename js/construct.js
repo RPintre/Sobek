@@ -41,6 +41,8 @@
 	var construct_player = {
 		_name : "default",
 		_color : "orange",
+		_vie : null,
+		_allowJump : null,
 		setterName : function(name){
 			this._name = name;
 		}

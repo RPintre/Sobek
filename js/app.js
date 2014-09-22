@@ -2,7 +2,10 @@
 
 function initPlayer(){
 	joueur = Object.create(player);
+	joueur._vie = true;
+	joueur._allowJump = true;
 	joueurPos = joueur.Position.eta();
+
 	niveau0 = $(".sol").css("top");
 	niveau0 = parseInt(niveau0,10) - 2;
 
@@ -18,8 +21,12 @@ function initPlayer(){
 function movePlayer(){
 	var xXx = niveau0-joueurTaille['h']-joueurPos['x'];
 	$("#player").velocity({ top: xXx,  rotateZ: "120deg" },{duration:500,
+			begin:function(){
+				joueur._allowJump = false;
+			},
 			complete:function(){
-		$("#player").velocity("reverse");
+			joueur._allowJump = true;
+			$("#player").velocity("reverse");
 	}
 });
 }
@@ -30,9 +37,11 @@ $(document).ready(function() {
 
 });
 
-$(document).on('click',function(){
-	console.log('movePlayer');
-	joueurPos['x'] = joueurPos['x']+50;
-	movePlayer()
-	joueurPos['x'] = joueurPos['x']-50;
-});	
+	$(document).on('click',function(){
+		if(joueur._allowJump){
+			console.log('movePlayer');
+			joueurPos['x'] = joueurPos['x']+50;
+			movePlayer()
+			joueurPos['x'] = joueurPos['x']-50;
+		}
+	});
