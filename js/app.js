@@ -20,13 +20,16 @@ function initPlayer(){
 
 function movePlayer(){
 	var xXx = niveau0-joueurTaille['h']-joueurPos['x'];
-	$("#player").velocity({ top: xXx,  rotateZ: "120deg" },{duration:500,
+	var duree = 1000;
+	$("#player").velocity({ top: xXx,  rotateZ: [0,-90] },{duration:duree/2,
 			begin:function(){
 				joueur._allowJump = false;
 			},
 			complete:function(){
-			joueur._allowJump = true;
-			$("#player").velocity("reverse");
+			$("#player").velocity({top:niveau0-joueurTaille['h'], rotateZ: [0,-90]},{duration:duree/2, complete:function(){
+								joueur._allowJump = true;
+
+			}});
 	}
 });
 }
@@ -37,11 +40,14 @@ $(document).ready(function() {
 
 });
 
-	$(document).on('click',function(){
+	$(document).mousedown(function(){
 		if(joueur._allowJump){
-			console.log('movePlayer');
-			joueurPos['x'] = joueurPos['x']+50;
+			console.log('movePlayer : TRUE');
+			joueurPos['x'] = joueurPos['x']+150;
 			movePlayer()
-			joueurPos['x'] = joueurPos['x']-50;
+			joueurPos['x'] = joueurPos['x']-150;
+		}else{
+			console.log('movePlayer : FALSE');
+			return false;
 		}
 	});
