@@ -34,18 +34,17 @@ var tailleJump = 50;
 		},
 
 		collision:function(rect2){
-			pos1=this.Position.eta()
-			pos2=rect2.Position.eta()
-			taille1=this.Taille.eta()
-			taille2=rect2.Taille.eta()
+			pos1=this.Position.eta();
+			pos2=rect2.Position.eta();
+			taille1=this.Taille.eta();
+			taille2=rect2.Taille.eta();
 
-			if (pos1._posY+taille1._height >= pos2._posY )
-			{
-			    console.log('collision détectée !');
+			if (pos1.y+taille1.h > pos2.y){
+			    return true;
 			}
 			else
 			{
-				console.log('collision non détectée !');
+				return false;
 			}
 		}	
 	};
@@ -74,7 +73,7 @@ var tailleJump = 50;
 			console.log(this._allowJump);
 			if(this._allowJump==true){
 				this._allowJump=false;
-				this.Position._posY = this.Position._posY+tailleJump;
+				this.Position._posY = this.Position._posY-tailleJump;
 			}
 		}
 	};

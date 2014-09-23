@@ -8,7 +8,7 @@ $(document).ready(function() {
 	
 	redline.Position._posY=350;
 	niveau0 = redline.Position._posY;
-	joueur.init(niveau0-joueurTaille['h'],50);
+	joueur.init(50,niveau0-joueurTaille['h']);
 	joueurPos = joueur.Position.eta();
 
 	// on ajoute le joueur au monde 

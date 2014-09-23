@@ -4,11 +4,12 @@
 function movePlayer(){
 	nouvellePos = joueur.Position.eta();
 	var posYActuel = $("#player").css('top');
-	console.log('posYActuel : '+posYActuel+', nouvellePos'+nouvellePos['x']);
+	console.log('posYActuel : '+posYActuel+', nouvellePos'+nouvellePos['y']);
 	var duree = 1000;
 
-	$("#player").velocity({ top: nouvellePos['x'],  rotateZ: [0,-90] },{duration:duree/2,
+	$("#player").velocity({ top: nouvellePos['y'],  rotateZ: [0,-90] },{duration:duree/2,
 		complete:function(){
+				joueur.collision(redline);
 				joueur._allowJump=true;
 			}
 		 });
@@ -24,9 +25,9 @@ function movePlayer(){
 			movePlayer();
 
 			/* test descente */
-				joueur.Position._posX = joueur.Position._posX+tailleJump;
+				joueur.Position._posY = joueur.Position._posY+tailleJump;
 				movePlayer();
-				joueur.collision(redline);
+				
 			/* /test descente */
 		}else{
 			console.log('movePlayer : FALSE');
