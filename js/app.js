@@ -24,7 +24,6 @@ $(document).ready(function() {
 	joueur.init(niveau0-joueurTaille['h'],50);
 	joueurPos = joueur.Position.eta();
 
-
 	// on ajoute le joueur au monde 
 	$(".world").append('<div id="player" class="player"></div>');
 	//on ajoute le sol au monde
