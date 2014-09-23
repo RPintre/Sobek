@@ -1,18 +1,14 @@
 function movePlayer(){
 	nouvellePos = joueur.Position.eta();
 	var posYActuel = $("#player").css('top');
-	console.log('posYActuel : '+posYActuel);
+	console.log('posYActuel : '+posYActuel+', nouvellePos'+nouvellePos['x']);
 	var duree = 1000;
 
-	$("#player").velocity({ top: [posYActuel,nouvellePos['x']],  rotateZ: [0,-90] },{duration:duree/2,
+	$("#player").velocity({ top: nouvellePos['x'],  rotateZ: [0,-90] },{duration:duree/2,
 		complete:function(){
-			$("#player").velocity({top:[nouvellePos['x'],posYActuel], rotateZ: [0,-90]},{duration:duree/2,
-			complete:function(){
 				joueur._allowJump=true;
 			}
 		 });
-		}
-	});
 }
 
 $(document).ready(function() {
@@ -20,10 +16,15 @@ $(document).ready(function() {
 	
 	
 
+	redline = Object.create(sol);
+	
 	joueur = Object.create(player);
-
+	joueurTaille = joueur.Taille.eta();	
+	
+	redline.initDefault();
 	joueurTaille = joueur.Taille.eta();
 	
+
 
 	redline.initDefault();
 	redline.Position._posX=350;
@@ -31,7 +32,6 @@ $(document).ready(function() {
 	joueur.init(niveau0-joueurTaille['h'],50);
 	joueurPos = joueur.Position.eta();
 
-	
 
 	// on ajoute le joueur au monde 
 	$(".world").append('<div id="player" class="player"></div>');
@@ -49,7 +49,6 @@ $(document).ready(function() {
 		if(joueur._allowJump){
 			joueur.jump();
 			movePlayer();
-			console.log(joueur.Position.eta());
 		}else{
 			console.log('movePlayer : FALSE');
 			return false;
