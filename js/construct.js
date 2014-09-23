@@ -1,4 +1,9 @@
 /*-------------------------------------------------*\
+				variable
+\*-------------------------------------------------*/
+/* Taille du saut */
+var tailleJump = 50;
+/*-------------------------------------------------*\
 				CONSTRUCTEURS
 \*-------------------------------------------------*/
 
@@ -7,16 +12,13 @@
 	\*-------------------------------------------------*/
 	var construct_item = {
 		Taille : {
-			_width : 50,
-			_height : 50,
+			_width : 25,
+			_height : 25,
 			eta : function(){
 				var tailleTab = new Object();
 				tailleTab['w'] = this._width;
 				tailleTab['h'] = this._height;
 				return tailleTab;
-			},
-			print : function(){
-				return 'position en x : ' + this._width +' et en y : '+this._height;
 			}
 		},
 
@@ -28,9 +30,6 @@
 				posTab['x'] = this._posX;
 				posTab['y'] = this._posY;
 				return posTab;
-			},
-			print : function(){
-				return 'position en x : ' + this._posX +' et en y : '+this._posY;
 			}
 		}
 	};
@@ -43,8 +42,24 @@
 		_color : "orange",
 		_vie : null,
 		_allowJump : null,
-		setterName : function(name){
-			this._name = name;
+		initDefault : function(){
+			this._vie = true;
+			this._allowJump = true;
+			this.Position._posX = 0;
+			this.Position._posY = 50;
+		},
+		init : function(x, y){
+			this._vie = true;
+			this._allowJump = true;
+			this.Position._posX = x;
+			this.Position._posY = y;
+		},
+		jump : function(){
+			console.log(this._allowJump);
+			if(this._allowJump==true){
+				this._allowJump=false;
+				this.Position._posX = this.Position._posX-tailleJump;
+			}
 		}
 	};
 	//heritage
@@ -54,7 +69,11 @@
 					constructeur obstacle
 	\*-------------------------------------------------*/
 	var construct_obstacle = {
-		_color : "black"
+		_color : "black",
+		init : function(x,y){
+			this.Position._posX = x;
+			this.Position._posY = y;
+		}
 	};
 	//heritage
 	var obstacle = $.extend(construct_obstacle,construct_item);
@@ -79,10 +98,12 @@
 
 	/*-------------------------------------------------*\
 					constructeur sol
-	\*-------------------------------------------------
-
-	var sol = $.extend(construct_sol,)
-	*/
+	\*-------------------------------------------------*/
+	var construct_sol = {
+		_name : "sol",
+		_isActive: true
+	};
+	var sol = $.extend(construct_sol, obstacle);
 
 	/*-------------------------------------------------*\
 					constructeur world
