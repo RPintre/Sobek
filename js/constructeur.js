@@ -21,7 +21,7 @@ var jump = 20;
 		}
 	}
 	// setter
-	construct_item.prototype.setTaille = function(w,h){
+	construct_item.prototype.setSize = function(w,h){
 		this.Size = {
 			_width : w,
 			_height : h
