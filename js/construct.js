@@ -45,6 +45,8 @@ var tailleJump = 50;
 			   taille1._height + pos1._posY > pos2._posY) 
 			{
 			    console.log('collision détectée !');
+			}else{
+				console.log('collision non détectée !');
 			}
 		}	
 	};

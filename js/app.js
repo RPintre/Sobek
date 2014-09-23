@@ -24,8 +24,9 @@ function movePlayer(){
 			movePlayer();
 
 			/* test descente */
-			joueur.Position._posX = joueur.Position._posX+tailleJump;
-			movePlayer();
+				joueur.Position._posX = joueur.Position._posX+tailleJump;
+				movePlayer();
+				joueur.collision(redline);
 			/* /test descente */
 		}else{
 			console.log('movePlayer : FALSE');
