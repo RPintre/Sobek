@@ -16,24 +16,33 @@ function movePlayer(){
 }
 
 $(document).ready(function() {
-	niveau0 = $(".sol").css("top");
-	niveau0 = parseInt(niveau0,10) - 2;
+	redline = Object.create(sol);
+	
+	
 
 	joueur = Object.create(player);
 
 	joueurTaille = joueur.Taille.eta();
-	joueur.init(niveau0-joueurTaille['h'],50);
+	
 
+	redline.initDefault();
+	redline.Position._posX=350;
+	niveau0 = redline.Position._posX;
+	joueur.init(niveau0-joueurTaille['h'],50);
 	joueurPos = joueur.Position.eta();
 
-	redline = Object.create(sol);
-	redline.initDefault;
+	
 
 	// on ajoute le joueur au monde 
 	$(".world").append('<div id="player" class="player"></div>');
+	//on ajoute le sol au monde
+	$(".world").append('<div id="sol" class="sol"></div>');
+	//on place le sol dans le monde (en css)
+	$("#sol").css('top',niveau0);
 	//on place le joueur dans le monde (en css)
 	$("#player").css('top',joueurPos['x']).css('left',joueurPos['y']);
 	$("#player").css('width',joueurTaille['w']).css('height',joueurTaille['h']);
+	//joueur.collision(redline);
 });
 
 	$(document).mousedown(function(){
