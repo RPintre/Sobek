@@ -39,13 +39,12 @@ var tailleJump = 50;
 			taille1=this.Taille.eta()
 			taille2=rect2.Taille.eta()
 
-			if (pos1._posX < pos2._posX + taille2._width &&
-			   pos1._posX + taille1._width > pos2._posX &&
-			   pos1._posY < pos2._posY + taille2._height &&
-			   taille1._height + pos1._posY > pos2._posY) 
+			if (pos1._posY+taille1._height >= pos2._posY )
 			{
 			    console.log('collision détectée !');
-			}else{
+			}
+			else
+			{
 				console.log('collision non détectée !');
 			}
 		}	
@@ -75,7 +74,7 @@ var tailleJump = 50;
 			console.log(this._allowJump);
 			if(this._allowJump==true){
 				this._allowJump=false;
-				this.Position._posX = this.Position._posX-tailleJump;
+				this.Position._posY = this.Position._posY+tailleJump;
 			}
 		}
 	};
@@ -123,6 +122,7 @@ var tailleJump = 50;
 			this.Position._posX = 0;
 			this.Position._posY = 350;
 			this.Taille._width = 5000;
+			this.Taille._height=10;
 		}
 	};
 	var sol = $.extend(construct_sol, obstacle);
