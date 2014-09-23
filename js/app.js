@@ -9,12 +9,18 @@ if (rect1.x < rect2.x + rect2.width &&
 }
 
 function movePlayer(){
-	joueurPos = joueur.Position.eta();
-	var xXx = niveau0-joueurTaille['h'];
+	nouvellePos = joueur.Position.eta();
+	var posYActuel = $("#player").css('top');
+	console.log('posYActuel : '+posYActuel);
 	var duree = 1000;
-	$("#player").velocity({ top: joueurPos['x'],  rotateZ: [0,-90] },{duration:duree/2,
+
+	$("#player").velocity({ top: [posYActuel,nouvellePos['x']],  rotateZ: [0,-90] },{duration:duree/2,
+		complete:function(){
+			$("#player").velocity({top:[nouvellePos['x'],posYActuel], rotateZ: [0,-90]},{duration:duree/2,
 			complete:function(){
-			$("#player").velocity({top:xXx, rotateZ: [0,-90]},{duration:duree/2 });
+				joueur._allowJump=true;
+			}
+		 });
 		}
 	});
 }
@@ -29,6 +35,9 @@ $(document).ready(function() {
 	joueur.init(niveau0-joueurTaille['h'],50);
 
 	joueurPos = joueur.Position.eta();
+
+	redline = Object.create(sol);
+	redline.initDefault;
 
 	// on ajoute le joueur au monde 
 	$(".world").append('<div id="player" class="player"></div>');

@@ -101,7 +101,12 @@ var tailleJump = 50;
 	\*-------------------------------------------------*/
 	var construct_sol = {
 		_name : "sol",
-		_isActive: true
+		_isActive: true,
+		initDefault : function(){
+			this.Position._posX = 0;
+			this.Position._posY = 350;
+			this.Taille._width = 5000;
+		}
 	};
 	var sol = $.extend(construct_sol, obstacle);
 
