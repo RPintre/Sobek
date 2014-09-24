@@ -102,7 +102,9 @@ var sol = 300;
 			this._allowJump=false;
 			return false;
 		}else{
-			this._allowJump=true;	
+			this._allowJump=true;
+			$("#player").velocity('stop');
+			$("#player").velocity({rotateZ: 0},{duration: 0});
 			return true;
 		}
 	}

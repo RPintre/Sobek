@@ -23,23 +23,23 @@ html,body{
 	line-height: 1.4rem;
 }
 
-/* scrollbar design 
-.container-world::-webkit-scrollbar {
+ /*scrollbar design */
+*::-webkit-scrollbar {
     width: 0px;
     height: 0px;
 }
  
-.container-world::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,1); 
     background: transparent;
 }
 
-.container-world::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   border-radius: 5px;
   outline: 0px solid #009688;
 }
-*/
+
 
 /*-------------------------------------------------*\
 				console
@@ -68,30 +68,28 @@ html,body{
 	left: 0;
 	right: 0;
 	top: 0;
-	bottom: 100px;
-
-	background: rgba(134,174,204,1);
-	background: -moz-linear-gradient(top, rgba(134,174,204,1) 0%, rgba(212,228,239,1) 100%);
-	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(134,174,204,1)), color-stop(100%, rgba(212,228,239,1)));
-	background: -webkit-linear-gradient(top, rgba(134,174,204,1) 0%, rgba(212,228,239,1) 100%);
-	background: -o-linear-gradient(top, rgba(134,174,204,1) 0%, rgba(212,228,239,1) 100%);
-	background: -ms-linear-gradient(top, rgba(134,174,204,1) 0%, rgba(212,228,239,1) 100%);
-	background: linear-gradient(to bottom, rgba(134,174,204,1) 0%, rgba(212,228,239,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#86aecc', endColorstr='#d4e4ef', GradientType=0 );
-
+	bottom: 0;
 }
 
 .world{
-	width: 2000px;
-	height: 100%;
+	width: 4000px;
+	height: 99%;
 	position: relative;
 	left: 0;
 	top: 0;
-	right: 0;
 
 	display: block;
 
-	border : 1px solid black;
+	background: #2ab0ed; /* Old browsers */
+	background: -moz-linear-gradient(-45deg, #2ab0ed 0%, #9fd8ef 49%, #bfe8f9 50%, #e4f5fc 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#2ab0ed), color-stop(49%,#9fd8ef), color-stop(50%,#bfe8f9), color-stop(100%,#e4f5fc)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg, #2ab0ed 0%,#9fd8ef 49%,#bfe8f9 50%,#e4f5fc 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg, #2ab0ed 0%,#9fd8ef 49%,#bfe8f9 50%,#e4f5fc 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg, #2ab0ed 0%,#9fd8ef 49%,#bfe8f9 50%,#e4f5fc 100%); /* IE10+ */
+	background: linear-gradient(135deg, #2ab0ed 0%,#9fd8ef 49%,#bfe8f9 50%,#e4f5fc 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2ab0ed', endColorstr='#e4f5fc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	background-size: 10% 33%;
+    background-repeat: repeat;
 }
 /*-------------------------------------------------*\
 				obstacle
@@ -110,6 +108,21 @@ html,body{
 		top: 70%;
 
 		background-color: darkred;
+	}
+
+	.limit{
+		position: absolute;
+		display: block;
+
+		opacity: 0.3;
+
+		height: 2px;
+		
+		left: 0;
+		right: 0;
+		top: 70%;
+
+		background-color: darkblue;
 	}
 	/*-------------------------------------------------*\
 					Carre

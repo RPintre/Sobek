@@ -1,7 +1,7 @@
 /*-------------------------------------------------*\
 				FONCTIONS VISUELLES
 \*-------------------------------------------------*/
-var vitesse = 5;
+var vitesse = 1;
 /*-------------------------------------------------*\
 				ACTIONS
 \*-------------------------------------------------*/
@@ -10,6 +10,8 @@ var vitesse = 5;
 		if(joueur.checkAllowJump()){
 			joueur.getJump();
 			recusifJump();
+			$("#player").velocity({rotateZ: [0,-180]},{duration: vitesse*1000, sequenceQueue: false })
+
 		}else{
 			console.log('t\'es en l\'air connard !');
 		}
@@ -21,6 +23,7 @@ var vitesse = 5;
 		joueur.checkAllowJump();
 		joueur.update(joueur.getPosition()._posX +1,joueur.getPosition()._posY);
 		$( "#container-world" ).scrollLeft( joueur.getPosition()._posX-50 );
+
 		setTimeout(boucle,vitesse);
 	}
 

@@ -1,9 +1,14 @@
-$(document).ready(function() {
++$(document).ready(function() {
 
 	/* creation sol */
 	redline = new construct_ground();
 	redline.setPosition(0,300);
 	redline.setSize(5000,2);
+
+	/* creation limit */
+	limit = new construct_ground();
+	limit.setPosition(0,250);
+	limit.setSize(5000,2);
 	
 	niveau0 = redline.getPosition()._posY-redline.getSize()._height;
 
@@ -18,10 +23,12 @@ $(document).ready(function() {
 	
 	/* creation des obstacles */
 	c1 = new construct_square();
-	c1.setPosition(150,niveau0-c1.Size._height);
+	c1.setPosition(400,niveau0-c1.Size._height);
 
 
 	//on ajoute le sol au monde
+	$(".world").append('<div id="limit" class="limit"></div>');
+
 	$(".world").append('<div id="sol" class="sol"></div>');
 	// on ajoute le joueur au monde 
 	$(".world").append('<div id="player" class="player"></div>');
@@ -33,6 +40,9 @@ $(document).ready(function() {
 	//on place le sol dans le monde (en css)
 	$("#sol").css('top',niveau0);
 	$("#sol").css('width',redline.getSize()._width).css('height',redline.getSize()._height);
+
+	$("#limit").css('top',limit.getPosition()._posY);
+	$("#limit").css('width',limit.getSize()._width).css('height',limit.getSize()._height);
 
 	//on place le joueur dans le monde (en css)
 	$("#player").css('top',joueur.getPosition()._posY).css('left',joueur.getPosition()._posX);
