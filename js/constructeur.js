@@ -90,7 +90,8 @@ var sol = 300;
 		$("#player").css('top',y);
 		this.Position._posX=x;		
 		$("#player").css('left',x);
-		if(this.Position._posY<sol){
+
+		if(this.Position._posY<redline.Position._posY){
 			this.stopJump();
 		}
 		else{

@@ -90,23 +90,38 @@ html,body{
 
 	border : 1px solid black;
 }
-
 /*-------------------------------------------------*\
-				sol
+				obstacle
 \*-------------------------------------------------*/
-.sol{
-	height: 2px;
+	/*-------------------------------------------------*\
+					sol
+	\*-------------------------------------------------*/
+	.sol{
+		position: absolute;
+		display: block;
+
+		height: 2px;
+		
+		left: 0;
+		right: 0;
+		top: 70%;
+
+		background-color: darkred;
+	}
+	/*-------------------------------------------------*\
+					Carre
+	\*-------------------------------------------------*/
+	.carre{
+		position: absolute;
+		display: block;
+
+		background-color: black;
+		border: 1px solid white;
+
+		width: 15px;
+		height: 15px;
+	}
 	
-	position: relative;
-	left: 0;
-	right: 0;
-	top: 70%;
-
-	display: block;
-
-	background-color: darkred;
-}
-
 /*-------------------------------------------------*\
 				joueur
 \*-------------------------------------------------*/
