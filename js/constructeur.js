@@ -90,7 +90,7 @@ var sol = 300;
 		$("#player").css('top',y);
 		this.Position._posX=x;		
 		$("#player").css('left',x);
-
+		
 		if(this.Position._posY<redline.Position._posY){
 			this.stopJump();
 		}
@@ -113,6 +113,11 @@ var sol = 300;
 				return false;
 			}
 			
+	}
+	construct_player.prototype.gravity=function(){
+		while(!this._allowJump){
+			this.update(this.Position._posX,this.Position._posY-1)
+		}
 	}
 
 	/*-------------------------------------------------*\
