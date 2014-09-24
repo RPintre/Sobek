@@ -1,7 +1,7 @@
 /*-------------------------------------------------*\
 				VARIABLES
 \*-------------------------------------------------*/
-var jumpSize = 70;
+var jumpSize = 50;
 var sol = 300;
 
 /*-------------------------------------------------*\
@@ -74,7 +74,10 @@ var sol = 300;
 		this._name = "player";
 		this._color = "orange";
 		this._life = null;
+		//boolean du jump
 		this._allowJump = null;
+		this._valMaxJump = null;
+		this._is_MaxJump = null;
 	}
 	// heritage
 	construct_player.prototype = new construct_item();
@@ -84,43 +87,50 @@ var sol = 300;
 	construct_player.prototype.init = function(){
 		this._life = true;
 		this._allowJump = true;
+		this._is_MaxJump = false;
 	}
 	construct_player.prototype.update = function(x,y){
-
 		this.Position._posY=y;
 		$("#player").css('top',y);
 		this.Position._posX=x;		
 		$("#player").css('left',x);
 	}
 
-	construct_player.prototype.check = function(){
+	//check
+	construct_player.prototype.checkAllowJump = function(){
 		if(this.getPosition()._posY+this.getSize()._height<redline.getPosition()._posY-redline.getSize()._height){
 			this._allowJump=false;
-			console.log('pas jump');
+			return false;
+		}else{
+			this._allowJump=true;	
+			return true;
 		}
-		else{
-			this._allowJump=true;			
+	}
+
+	construct_player.prototype.checkIs_maxJump = function(){
+		if(this.getPosition()._posY>=this._valMaxJump){
+			this._is_maxJump=false;
+			return false;
+		}else{
+			this._is_maxJump=true;	
+			return true;
 		}
+	}
+	construct_player.prototype.getJump = function(){
+		this._valMaxJump = this.getPosition()._posY-jumpSize;
+		return this._valMaxJump;
 	}
 	//jump
 	construct_player.prototype.jump = function(){
-			if(this._allowJump){
-				for(var i=0;i<=jumpSize;i++){
-					this.update(this.Position._posX,this.Position._posY-2);	
-					console.log(this.getPosition());		
-				}
-			}
-			else{
-				return false;
-			}
-			
+		this.update(this.Position._posX,this.Position._posY-2);
 	}
+	//recusif jump
+
+	//gravity
 	construct_player.prototype.gravity=function(){
 		if(!this._allowJump){
 			this.update(this.Position._posX,this.Position._posY+1);
 		}
-		
-
 	}
 
 	/*-------------------------------------------------*\

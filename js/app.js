@@ -14,19 +14,26 @@ function movePlayer(){
 \*-------------------------------------------------*/
 	/* au clic */
 	$(document).mousedown(function(){
-		
-			joueur.jump();
-			joueur.check();
-		
-
-			/* test descente */
-				//movePlayer();
-				
-			/* /test descente */
-		
+		if(joueur.checkAllowJump()){
+			joueur.getJump();
+			recusifJump();
+		}else{
+			console.log('t\'es en l\'air connard !');
+		}
 	});
+
 	function boucle(){
 		joueur.gravity();
-		joueur.check();
-		setTimeout(boucle,30);
+		joueur.checkAllowJump();
+		joueur.update(joueur.getPosition()._posX +1,joueur.getPosition()._posY);
+		setTimeout(boucle,5);
+	}
+
+	function recusifJump(){
+		if(!joueur.checkIs_maxJump()){
+			joueur.jump();
+			setTimeout(recusifJump,5);
+		}else{
+			console.log(joueur.checkIs_maxJump());
+		}
 	}
