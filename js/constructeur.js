@@ -129,11 +129,21 @@ var sol = 300;
 	//recusif jump
 
 	//gravity
-	construct_player.prototype.gravity=function(){
-		if(!this._allowJump){
+	construct_player.prototype.gravity=function(posX_Ground){
+		a=this.getPosition();
+		if(!this._allowJump ){
+			this.update(this.Position._posX,this.Position._posY+1);
+		}
+		if(a._posX>posX_Ground){
 			this.update(this.Position._posX,this.Position._posY+1);
 		}
 	}
+	/*construct_player.prototype.restart=function(){
+		if(this.Position._posY>370){
+			INSERT HERE>>>>>>>>> LAUNCH de init.js <<<<<<<<<<<< INSERT HERE
+		}
+
+	}*/
 
 	/*-------------------------------------------------*\
 					constructeur obstacle
