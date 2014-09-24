@@ -23,7 +23,7 @@ html,body{
 	line-height: 1.4rem;
 }
 
-/* scrollbar design */
+/* scrollbar design 
 .container-world::-webkit-scrollbar {
     width: 0px;
     height: 0px;
@@ -39,7 +39,7 @@ html,body{
   border-radius: 5px;
   outline: 0px solid #009688;
 }
-
+*/
 
 /*-------------------------------------------------*\
 				console
@@ -62,11 +62,13 @@ html,body{
 .container-world{
 	display: block;
 
-	position: absolute;	
+	position: absolute;
+		 overflow: auto;
+
 	left: 0;
 	right: 0;
 	top: 0;
-	bottom: 0;
+	bottom: 100px;
 
 	background: rgba(134,174,204,1);
 	background: -moz-linear-gradient(top, rgba(134,174,204,1) 0%, rgba(212,228,239,1) 100%);
@@ -76,12 +78,13 @@ html,body{
 	background: -ms-linear-gradient(top, rgba(134,174,204,1) 0%, rgba(212,228,239,1) 100%);
 	background: linear-gradient(to bottom, rgba(134,174,204,1) 0%, rgba(212,228,239,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#86aecc', endColorstr='#d4e4ef', GradientType=0 );
+
 }
 
 .world{
 	width: 2000px;
 	height: 100%;
-	position: absolute;
+	position: relative;
 	left: 0;
 	top: 0;
 	right: 0;

@@ -5,8 +5,7 @@ $(document).ready(function() {
 	redline.setPosition(0,300);
 	redline.setSize(5000,2);
 	
-	niveau0 = redline.getPosition();
-	niveau0 = niveau0['_posY'];
+	niveau0 = redline.getPosition()._posY-redline.getSize()._height;
 
 	/* creation du joueur */
 	joueur = new construct_player();
