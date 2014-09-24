@@ -24,3 +24,8 @@ function movePlayer(){
 			/* /test descente */
 		
 	});
+	function boucle(){
+		joueur.gravity();
+		joueur.check();
+		setTimeout(boucle,70);
+	}

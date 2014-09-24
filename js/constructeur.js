@@ -96,9 +96,11 @@ var sol = 300;
 	construct_player.prototype.check = function(){
 		if(this.getPosition()._posY+this.getSize()._height<redline.getPosition()._posY){
 			this._allowJump=false;
+			console.log('pas jump');
 		}
 		else{
 			this._allowJump=true;
+			console.log('jump');
 		}
 	}
 	//jump
@@ -112,9 +114,11 @@ var sol = 300;
 			
 	}
 	construct_player.prototype.gravity=function(){
-		while(!this._allowJump){
-			this.update(this.Position._posX,this.Position._posY-1)
+		if(!this._allowJump){
+			this.update(this.Position._posX,this.Position._posY+1);
 		}
+		
+
 	}
 
 	/*-------------------------------------------------*\

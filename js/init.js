@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 	/* creation du joueur */
 	joueur = new construct_player();
-	joueur.init();
+	joueur.init();	
 	joueurTaille = joueur.getSize();	
 	joueurPos = joueur.getPosition();
 
