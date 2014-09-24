@@ -1,18 +1,12 @@
 /*-------------------------------------------------*\
 				FONCTIONS VISUELLES
-\*-------------------------------------------------*/
+\*-------------------------------------------------
 function movePlayer(){
-	nouvellePos = joueur.Position.eta();
+	nouvellePos = joueur.getPosition();
 	var posYActuel = $("#player").css('top');
-	console.log('posYActuel : '+posYActuel+', nouvellePos'+nouvellePos['y']);
-	var duree = 1000;
+	var duree = 1;
 
-	$("#player").velocity({ top: nouvellePos['y'],  rotateZ: [0,-90] },{duration:duree/2,
-		complete:function(){
-				joueur.collision(redline);
-				joueur._allowJump=true;
-			}
-		 });
+	$("#player").velocity({ top: nouvellePos['_posY'],  rotateZ: -1deg },{duration:duree});
 }
 
 /*-------------------------------------------------*\
@@ -26,7 +20,7 @@ function movePlayer(){
 
 			/* test descente */
 				joueur.Position._posY = joueur.Position._posY+tailleJump;
-				movePlayer();
+				//movePlayer();
 				
 			/* /test descente */
 		}else{

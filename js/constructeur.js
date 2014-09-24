@@ -50,9 +50,26 @@ var jump = 20;
 		return this._name;
 	}
 
+	//function
+	construct_item.prototype.collision = function(obstacle){
+			pos1=this.getPosition();
+			pos2=obstacle.getPosition();
+			taille1=this.getSize();
+			taille2=obstacle.getSize();
+
+			if (pos1._posY+taille1._height > pos2._posY){
+			    return true;
+			}
+			else
+			{
+				return false;
+			}
+	}
+
 	/*-------------------------------------------------*\
 					Constructeur player
 	\*-------------------------------------------------*/
+
 	function construct_player(){
 		console.log('creation d\'un joueur');
 		construct_item.call(this);
@@ -68,14 +85,23 @@ var jump = 20;
 	// init
 	construct_player.prototype.init = function(){
 		this._life = true;
-		this._allowJump = false;
+		this._allowJump = true;
 	}
 
 	//jump
 	construct_player.prototype.jump = function(){
 		if (this._allowJump) {
-			this.Position._posY = this.Position._posY-jump;
-		};
+			//this._allowJump = false;
+
+			console.log(this.getPosition());
+			$("#player").velocity({ top: this.Position._posY-200, rotationZ: -45},{duration:2000, complete:function(){
+					$("#player").velocity('reverse',{delay:500});
+					}
+			});
+		}
+		else{
+			return false;
+		}
 	}
 
 	/*-------------------------------------------------*\
@@ -127,3 +153,21 @@ var jump = 20;
 	//heritage
 	construct_ground.prototype = new construct_obstacle();
 	construct_ground.prototype.constructor = construct_ground;
+
+
+
+
+
+
+	/*-------------------------------------------------*\
+					annexes
+	\*-------------------------------------------------*/
+
+	function pause(millisecondi) {
+  var now = new Date();
+  var exitTime = now.getTime() + millisecondi;
+  while(true) {
+  now = new Date();
+  if(now.getTime() > exitTime) return;
+  }
+}
