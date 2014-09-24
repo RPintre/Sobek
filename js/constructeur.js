@@ -86,23 +86,20 @@ var sol = 300;
 		this._allowJump = true;
 	}
 	construct_player.prototype.update = function(x,y){
+
 		this.Position._posY=y;
 		$("#player").css('top',y);
 		this.Position._posX=x;		
 		$("#player").css('left',x);
-		
-		if(this.Position._posY<redline.Position._posY){
-			this.stopJump();
+	}
+
+	construct_player.prototype.check = function(){
+		if(this.getPosition()._posY+this.getSize()._height<redline.getPosition()._posY){
+			this._allowJump=false;
 		}
 		else{
-			this.goJump();
+			this._allowJump=true;
 		}
-	}
-	construct_player.prototype.stopJump=function(){
-		this._allowJump=false;
-	}
-	construct_player.prototype.goJump=function(){
-		this._allowJump=true;
 	}
 	//jump
 	construct_player.prototype.jump = function(){
