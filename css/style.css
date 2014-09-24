@@ -138,7 +138,7 @@ html,body{
 	border: 1px solid black;
 	border-radius: 1px; 
 	
-	transition: all 0.4s;
+	/*transition: all 0.4s;
 	-moz-transition: all 0.4s;
 	-webkit-transition: all 0.4s;
 	-o-transition: all 0.4s;
@@ -147,5 +147,5 @@ html,body{
 	-moz-transition-timing-function: ease-out;
 	-webkit-transition-timing-function: ease-out;
 	-o-transition-timing-function: ease-out;
-	-ms-transition-timing-function: ease-out;
+	-ms-transition-timing-function: ease-out;*/
 }

@@ -1,7 +1,7 @@
 /*-------------------------------------------------*\
 				VARIABLES
 \*-------------------------------------------------*/
-var jump = 50;
+var jumpSize = 70;
 var sol = 300;
 
 /*-------------------------------------------------*\
@@ -94,19 +94,21 @@ var sol = 300;
 	}
 
 	construct_player.prototype.check = function(){
-		if(this.getPosition()._posY+this.getSize()._height<redline.getPosition()._posY){
+		if(this.getPosition()._posY+this.getSize()._height<redline.getPosition()._posY-redline.getSize()._height){
 			this._allowJump=false;
 			console.log('pas jump');
 		}
 		else{
-			this._allowJump=true;
-			console.log('jump');
+			this._allowJump=true;			
 		}
 	}
 	//jump
 	construct_player.prototype.jump = function(){
 			if(this._allowJump){
-				this.update(this.Position._posX,this.Position._posY-jump);
+				for(var i=0;i<=jumpSize;i++){
+					this.update(this.Position._posX,this.Position._posY-2);	
+					console.log(this.getPosition());		
+				}
 			}
 			else{
 				return false;

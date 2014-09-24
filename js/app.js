@@ -16,6 +16,7 @@ function movePlayer(){
 	$(document).mousedown(function(){
 		
 			joueur.jump();
+			joueur.check();
 		
 
 			/* test descente */
@@ -27,5 +28,5 @@ function movePlayer(){
 	function boucle(){
 		joueur.gravity();
 		joueur.check();
-		setTimeout(boucle,70);
+		setTimeout(boucle,30);
 	}
