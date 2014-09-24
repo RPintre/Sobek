@@ -14,17 +14,13 @@ function movePlayer(){
 \*-------------------------------------------------*/
 	/* au clic */
 	$(document).mousedown(function(){
-		if(joueur._allowJump){
+		
 			joueur.jump();
-			movePlayer();
+		
 
 			/* test descente */
-				joueur.Position._posY = joueur.Position._posY+tailleJump;
 				//movePlayer();
 				
 			/* /test descente */
-		}else{
-			console.log('movePlayer : FALSE');
-			return false;
-		}
+		
 	});

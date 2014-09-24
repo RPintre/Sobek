@@ -1,7 +1,8 @@
 /*-------------------------------------------------*\
 				VARIABLES
 \*-------------------------------------------------*/
-var jump = 20;
+var jump = 50;
+var sol = 300;
 
 /*-------------------------------------------------*\
 				CONSTRUCTEUR 
@@ -36,9 +37,6 @@ var jump = 20;
 	construct_item.prototype.setName = function(name){
 		this._name = name;
 	}
-	
-
-
 	// getter
 	construct_item.prototype.getSize = function(){
 		return this.Size;
@@ -87,21 +85,33 @@ var jump = 20;
 		this._life = true;
 		this._allowJump = true;
 	}
-
-	//jump
-	construct_player.prototype.jump = function(){
-		if (this._allowJump) {
-			//this._allowJump = false;
-
-			console.log(this.getPosition());
-			$("#player").velocity({ top: this.Position._posY-200, rotationZ: -45},{duration:2000, complete:function(){
-					$("#player").velocity('reverse',{delay:500});
-					}
-			});
+	construct_player.prototype.update = function(x,y){
+		this.Position._posY=y;
+		$("#player").css('top',y);
+		this.Position._posX=x;		
+		$("#player").css('left',x);
+		if(this.Position._posY<sol){
+			this.stopJump();
 		}
 		else{
-			return false;
+			this.goJump();
 		}
+	}
+	construct_player.prototype.stopJump=function(){
+		this._allowJump=false;
+	}
+	construct_player.prototype.goJump=function(){
+		this._allowJump=true;
+	}
+	//jump
+	construct_player.prototype.jump = function(){
+			if(this._allowJump){
+				this.update(this.Position._posX,this.Position._posY-jump);
+			}
+			else{
+				return false;
+			}
+			
 	}
 
 	/*-------------------------------------------------*\
