@@ -3,14 +3,14 @@ $(document).ready(function() {
 	/* creation sol */
 	redline = new construct_ground();
 	redline.setPosition(0,400);
-	redline.setSize(4000,2);
+	redline.setSize(3500,1);
 	
 	niveau0 = redline.getPosition()._posY-redline.getSize()._height;
 
 	/* creation du joueur */
 	joueur = new construct_player();
 	joueur.init();
-	joueur.setPosition(0,300);
+	joueur.setPosition(0,360);
 	joueurTaille = joueur.getSize();	
 	joueurPos = joueur.getPosition();
 
@@ -18,14 +18,37 @@ $(document).ready(function() {
 					Création des obstacles
 	\*-------------------------------------------------*/
 	tabObstacle = new Array(
-		{_type : "carre",_posX:200,_posY:niveau0-20},
-		{_type : "carre",_posX:400,_posY:niveau0-20},
+		{_type : "carre",	_posX:200,_posY:niveau0-20},
+		{_type : "carre",	_posX:400,_posY:niveau0-20},
 		{_type : "triangle",_posX:600,_posY:niveau0-20},
-		{_type : "carre",_posX:700,_posY:niveau0-20},
 		{_type : "triangle",_posX:800,_posY:niveau0-20},
-		{_type : "carre",_posX:1000,_posY:niveau0-20},
+		{_type : "carre",	_posX:1000,_posY:niveau0-20},
 		{_type : "triangle",_posX:1200,_posY:niveau0-20},
-		{_type : "carre",_posX:1400,_posY:niveau0-20}
+		{_type : "carre",	_posX:1400,_posY:niveau0-20},
+		{_type : "triangle",_posX:1420,_posY:niveau0-20},
+		{_type : "carre",	_posX:1600,_posY:niveau0-20},
+		{_type : "triangle",_posX:1800,_posY:niveau0-20},
+		{_type : "triangle",_posX:1820,_posY:niveau0-20},
+		{_type : "triangle",_posX:1840,_posY:niveau0-20},
+		//saut de 2 cases en hauteur
+		{_type : "carre",	_posX:2000,_posY:niveau0-20},
+		{_type : "triangle",_posX:2000,_posY:niveau0-40},
+
+		{_type : "carre",	_posX:2200,_posY:niveau0-20},
+		{_type : "carre",	_posX:2400,_posY:niveau0-20},
+		{_type : "triangle",_posX:2600,_posY:niveau0-20},
+		{_type : "triangle",_posX:2800,_posY:niveau0-20},
+		{_type : "carre",	_posX:2000,_posY:niveau0-20},
+		{_type : "triangle",_posX:2200,_posY:niveau0-20},
+		{_type : "carre",	_posX:2400,_posY:niveau0-20},
+		{_type : "triangle",_posX:2420,_posY:niveau0-20},
+		{_type : "carre",	_posX:2600,_posY:niveau0-20},
+		{_type : "triangle",_posX:2800,_posY:niveau0-20},
+		{_type : "triangle",_posX:2820,_posY:niveau0-20},
+		{_type : "triangle",_posX:2840,_posY:niveau0-20},
+		//saut de 2 cases en hauteur
+		{_type : "carre",	_posX:3000,_posY:niveau0-20},
+		{_type : "triangle",_posX:3000,_posY:niveau0-40}
 	);
 
 	for (var i = 0; i < tabObstacle.length; i++) {

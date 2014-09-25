@@ -98,7 +98,7 @@ var sol = 300;
 		}else{
 			this._allowJump=true;
 			$("#player").velocity('stop');
-			$("#player").velocity({rotateZ: 0},{duration: 0});
+			$("#player").velocity({rotateZ: 0},{duration: 0, sequenceQueue: false});
 			return true;
 		}
 	}
@@ -124,22 +124,10 @@ var sol = 300;
 
 	//gravity
 	construct_player.prototype.gravity=function(){
-		//a=this.getPosition();
 		if(!this._allowJump ){
 			this.update(this.Position._posX,this.Position._posY+1);
 		}
-		/*
-		if(a._posX>posX_Ground){
-			this.update(this.Position._posX,this.Position._posY+1);
-		}
-		*/
 	}
-	/*construct_player.prototype.restart=function(){
-		if(this.Position._posY>370){
-			INSERT HERE>>>>>>>>> LAUNCH de init.js <<<<<<<<<<<< INSERT HERE
-		}
-
-	}*/
 
 	/*-------------------------------------------------*\
 					constructeur obstacle
@@ -178,6 +166,17 @@ var sol = 300;
 	//heritage
 	construct_square.prototype = new construct_obstacle();
 	construct_square.prototype.constructor = construct_square;
+	//function
+	construct_square.prototype.collision = function(obstacle){
+		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY+3, w: this.getSize()._width, h: this.getSize()._height};
+		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
+
+		if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 	/*-------------------------------------------------*\
 					constructeur sol : ground
