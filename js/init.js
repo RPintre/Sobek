@@ -13,11 +13,14 @@ $(document).ready(function() {
 	joueurTaille = joueur.getSize();	
 	joueurPos = joueur.getPosition();
 
-	joueur.setPosition(50,niveau0-joueur.Size._height);
+	joueur.setPosition(50,0);
+
+	c1 = new construct_square();
+	c1.setPosition(0,0);
 
 	function test(){
 		console.log(joueur.getPosition());
-		setTimeout(test,500);
+		setTimeout(test,1);
 	}
 	test();
 

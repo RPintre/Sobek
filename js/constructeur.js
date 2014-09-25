@@ -55,23 +55,8 @@ var sol = 300;
 
 			taille1=this.getSize();
 			tailleObstacle=obstacle.getSize();
-
-			if (pos1._posX < posObtacle._posX + posObtacle._width && pos1._posX + pos1._width > posObtacle._posX && pos1._posY < posObtacle._posY + posObtacle._height && pos1._height + pos1._posY > posObtacle._posY) {
-				console.log('collision detecté');
-			}
-			//collision bas
-			/*
-			if (pos1._posY < posObtacle._posY+tailleObstacle._height){
-			    return 'bas';
-			}else{
-				return false;
-			}
-			//collision gauche
-			if(pos1._posX > posObtacle._posY){
-			}
-			*/
-
-	}
+			return false;
+		}
 
 	/*-------------------------------------------------*\
 					Constructeur player
