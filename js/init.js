@@ -14,7 +14,7 @@ $(document).ready(function() {
 	joueurPos = joueur.getPosition();
 
 	c1 = new construct_square();
-	c1.setPosition(500,niveau0-c1.getSize()._height);
+	c1.setPosition(500,niveau0-c1.getSize()._height-30);
 
 	/*-------------------------------------------------*\
 					Graphique

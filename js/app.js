@@ -19,7 +19,7 @@ var vitesse = 1;
 	function boucle(){
 		//déclaration du tableau de taille du sol 
 		if(joueur.collision(c1) || joueur.getPosition()._posY>500){			
-			setTimeout(joueur.setPosition(0,250));
+			joueur.setPosition(0,250);
 		}
 		
 		if(!joueur._allowJump){
