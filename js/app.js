@@ -19,10 +19,11 @@ var framPerfect = [0];
 	//boucle infini, evolution du jeu
 	function boucle(){
 		//déclaration du tableau de taille du sol 
-		if(joueur.collision(c1) || joueur.getPosition()._posY>500){			
-			joueur.setPosition(0,250);
+		for(j=0;j<tabObstacle.length;j++){
+			if(joueur.collision(tabObstacle[j]) || joueur.getPosition()._posY>500){			
+				joueur.setPosition(0,250);
+			}
 		}
-		
 		if(!joueur._allowJump){
 			$("#player").velocity({rotateZ: [0,-180]},{duration: vitesse*500, sequenceQueue: false });
 		}
