@@ -41,7 +41,7 @@ var framPerfect = [
 \*-------------------------------------------------*/
 	/* au clic */
 	$(document).mousedown(function(){
-		if(joueur.checkAllowJump()){
+		if(joueur._allowJump){
 			joueur.getJump();
 			recusifJump();
 		}else{
@@ -68,12 +68,12 @@ var framPerfect = [
 		$( "#container-world" ).scrollLeft( joueur.getPosition()._posX-50 );
 		
 		if($.inArray(joueur.getPosition()._posX,framPerfect)!=-1){
-        	if(joueur.checkAllowJump()){
+        	if(joueur._allowJump){
 				joueur.getJump();
 				recusifJump();
 				console.log('saut programmé !');
 			}else{
-				console.log('saut programmé indisponible');
+				//console.log('saut programmé indisponible');
 			}
     	}
 

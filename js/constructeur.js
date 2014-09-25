@@ -82,7 +82,7 @@ var sol = 300;
 	// init
 	construct_player.prototype.init = function(){
 		this._life = true;
-		this._allowJump = false;
+		this._allowJump = true;
 		this._is_MaxJump = false;
 	}
 	construct_player.prototype.update = function(x,y){
@@ -92,6 +92,7 @@ var sol = 300;
 
 	//check
 	construct_player.prototype.checkAllowJump = function(){
+		console.log(this.collision(redline));
 		if(!this.collision(redline)){
 			this._allowJump=false;
 			return false;
@@ -172,7 +173,8 @@ var sol = 300;
 		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
 
 		if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
-			return true;
+			console.log('collision avec un carre');
+			return false;
 		}else{
 			return false;
 		}
@@ -189,10 +191,22 @@ var sol = 300;
 	//heritage
 	construct_ground.prototype = new construct_obstacle();
 	construct_ground.prototype.constructor = construct_ground;
+	//fonction
+	/*
+	construct_ground.prototype.collision = function(obstacle){
+		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY+3, w: this.getSize()._width, h: this.getSize()._height};
+		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
 
-
-
-
+		if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
+			console.log('collision avec le sol');
+			this._allowJump=true;
+			return false;
+		}else{
+			this._allowJump=false;
+			return false;
+		}
+	}
+	*/
 
 
 	/*-------------------------------------------------*\
