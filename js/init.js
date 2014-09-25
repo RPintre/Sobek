@@ -17,7 +17,6 @@ $(document).ready(function() {
 
 	function test(){
 		console.log(joueur.getPosition());
-		console.log(joueur);
 		setTimeout(test,500);
 	}
 	test();
