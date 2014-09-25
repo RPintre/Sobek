@@ -3,13 +3,14 @@ $(document).ready(function() {
 	/* creation sol */
 	redline = new construct_ground();
 	redline.setPosition(0,400);
-	redline.setSize(2000,2);
+	redline.setSize(4000,2);
 	
 	niveau0 = redline.getPosition()._posY-redline.getSize()._height;
 
 	/* creation du joueur */
 	joueur = new construct_player();
 	joueur.init();
+	joueur.setPosition(0,300);
 	joueurTaille = joueur.getSize();	
 	joueurPos = joueur.getPosition();
 
@@ -17,28 +18,39 @@ $(document).ready(function() {
 					Création des obstacles
 	\*-------------------------------------------------*/
 	c1 = new construct_square();
-	c1.setPosition(500,niveau0-c1.getSize()._height-20);
+	c1.setPosition(00,niveau0-c1.getSize()._height-20);
 
 	tabObstacle = new Array(
-		{_type : "carre",_posX:500,_posY:400},
-		{_type : "carre",_posX:1000,_posY:400}
+		{_type : "carre",_posX:200,_posY:niveau0-20},
+		{_type : "carre",_posX:400,_posY:niveau0-20},
+		{_type : "triangle",_posX:600,_posY:niveau0-20},
+		{_type : "carre",_posX:700,_posY:niveau0-20},
+		{_type : "triangle",_posX:800,_posY:niveau0-20},
+		{_type : "carre",_posX:1000,_posY:niveau0-20},
+		{_type : "triangle",_posX:1200,_posY:niveau0-20},
+		{_type : "carre",_posX:1400,_posY:niveau0-20}
 	);
 
 	for (var i = 0; i < tabObstacle.length; i++) {
-		if(tabObstacle[i]["_type"] == "carre"){
 		var X = tabObstacle[i]["_posX"];
 		var Y = tabObstacle[i]["_posY"];
-		tabObstacle[i] = new construct_square();
-		
-		tabObstacle[i].setPosition(X,Y);
+		if(tabObstacle[i]["_type"] == "carre"){
+			tabObstacle[i] = new construct_square();
+			tabObstacle[i].setPosition(X,Y);
+			$(".world").append('<div id="o'+i+'" class="carre"></div>');
 
-		$(".world").append('<div id="'+i+'" class="carre"></div>');
-		$(i).css('top',X).css('left',Y);
-		$(i).css('width','20').css('height','20');
-		
+		}else if(tabObstacle[i]["_type"] == "triangle"){
+			tabObstacle[i] = new construct_triangle();
+			tabObstacle[i].setPosition(X,Y);
+			$(".world").append('<div id="o'+i+'" class="triangle"></div>');
+
 		}else{
 			console.log('type inconnu');
 		}
+		
+		$("#o"+i).css('left',X).css('top',Y);
+		$("#o"+i).css('width','20').css('height','20');
+		
 	};
 	console.log(tabObstacle);
 	/*-------------------------------------------------*\

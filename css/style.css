@@ -90,6 +90,7 @@ html,body{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2ab0ed', endColorstr='#e4f5fc',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 	background-size: 10% 33%;
     background-repeat: repeat;
+    background-attachment: fixed;
 }
 /*-------------------------------------------------*\
 				obstacle
@@ -132,6 +133,17 @@ html,body{
 		display: block;
 
 		background-color: black;
+		border: 1px solid white;
+
+		width: 15px;
+		height: 15px;
+	}
+
+	.triangle{
+		position: absolute;
+		display: block;
+
+		background-color: darkblue;
 		border: 1px solid white;
 
 		width: 15px;
