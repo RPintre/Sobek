@@ -2,6 +2,7 @@
 				FONCTIONS VISUELLES
 \*-------------------------------------------------*/
 var vitesse = 1;
+var framPerfect = [433,1000];
 /*-------------------------------------------------*\
 				ACTIONS
 \*-------------------------------------------------*/
@@ -11,7 +12,7 @@ var vitesse = 1;
 			joueur.getJump();
 			recusifJump();
 		}else{
-			console.log('t\'es en l\'air connard !');
+			console.log('saut indisponible en l\'air, veillez réessayer plus tard ;)');
 		}
 	});
 
@@ -29,10 +30,17 @@ var vitesse = 1;
 		joueur.gravity();
 		joueur.checkAllowJump();
 		joueur.update(joueur.getPosition()._posX +1,joueur.getPosition()._posY);
+		
 		$( "#container-world" ).scrollLeft( joueur.getPosition()._posX-50 );
+		
+		if($.inArray(joueur.getPosition()._posX,framPerfect)!=-1){
+        console.log('jump programé');
+        joueur.getJump();
+        recusifJump();
+    	}
 
 		setTimeout(boucle,vitesse);
-	}
+	};
 
 	//boucle du saut
 	function recusifJump(){

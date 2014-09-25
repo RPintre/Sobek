@@ -13,9 +13,33 @@ $(document).ready(function() {
 	joueurTaille = joueur.getSize();	
 	joueurPos = joueur.getPosition();
 
+	/*-------------------------------------------------*\
+					Création des obstacles
+	\*-------------------------------------------------*/
 	c1 = new construct_square();
-	c1.setPosition(500,niveau0-c1.getSize()._height-30);
+	c1.setPosition(500,niveau0-c1.getSize()._height-20);
 
+	tabObstacle = new Array(
+		{_type : "carre",_posX:500,_posY:400},
+		{_type : "carre",_posX:1000,_posY:400}
+	);
+
+	for (var i = 0; i < tabObstacle.length; i++) {
+		if(tabObstacle[i]["_type"] == "carre"){
+		var X = tabObstacle[i]["_posX"];
+		var Y = tabObstacle[i]["_posY"];
+		tabObstacle[i] = new construct_square();
+		
+		tabObstacle[i].setPosition(X,Y);
+
+		// l'affichage chie, on pouvait si attendre...
+		$(".world").append('<div id="'+i+'" class="carre" top: '+Y+'px; left: '+X+'px; width: 20px; height: 20px;></div>');
+
+		}else{
+			console.log('type inconnu');
+		}
+	};
+	console.log(tabObstacle);
 	/*-------------------------------------------------*\
 					Graphique
 	\*-------------------------------------------------*/
@@ -40,3 +64,5 @@ $(document).ready(function() {
 	$("#c1").css('top',c1.getPosition()._posY).css('left',c1.getPosition()._posX);
 	$("#c1").css('width',c1.getSize()._width).css('height',c1.getSize()._height);
 });
+
+
