@@ -32,9 +32,10 @@ $(document).ready(function() {
 		
 		tabObstacle[i].setPosition(X,Y);
 
-		// l'affichage chie, on pouvait si attendre...
-		$(".world").append('<div id="'+i+'" class="carre" top: '+Y+'px; left: '+X+'px; width: 20px; height: 20px;></div>');
-
+		$(".world").append('<div id="'+i+'" class="carre"></div>');
+		$(i).css('top',X).css('left',Y);
+		$(i).css('width','20').css('height','20');
+		
 		}else{
 			console.log('type inconnu');
 		}
