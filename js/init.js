@@ -17,9 +17,6 @@ $(document).ready(function() {
 	/*-------------------------------------------------*\
 					Création des obstacles
 	\*-------------------------------------------------*/
-	c1 = new construct_square();
-	c1.setPosition(00,niveau0-c1.getSize()._height-20);
-
 	tabObstacle = new Array(
 		{_type : "carre",_posX:200,_posY:niveau0-20},
 		{_type : "carre",_posX:400,_posY:niveau0-20},
@@ -61,9 +58,6 @@ $(document).ready(function() {
 	$(".world").append('<div id="sol" class="sol"></div>');
 	// on ajoute le joueur au monde 
 	$(".world").append('<div id="player" class="player"></div>');
-	//
-	$(".world").append('<div id="c1" class="carre"></div>');
-
 
 	//on place le sol dans le monde (en css)
 	$("#sol").css('top',niveau0);
@@ -73,9 +67,6 @@ $(document).ready(function() {
 	$("#player").css('top',joueur.getPosition()._posY).css('left',joueur.getPosition()._posX);
 	$("#player").css('width',joueur.getSize()._width).css('height',joueur.getSize()._height);
 
-	//on place les obstacles
-	$("#c1").css('top',c1.getPosition()._posY).css('left',c1.getPosition()._posX);
-	$("#c1").css('width',c1.getSize()._width).css('height',c1.getSize()._height);
 });
 
 
