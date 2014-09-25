@@ -51,17 +51,26 @@ var sol = 300;
 	//function
 	construct_item.prototype.collision = function(obstacle){
 			pos1=this.getPosition();
-			pos2=obstacle.getPosition();
-			taille1=this.getSize();
-			taille2=obstacle.getSize();
+			posObtacle=obstacle.getPosition();
 
-			if (pos1._posY+taille1._height > pos2._posY){
-			    return true;
+			taille1=this.getSize();
+			tailleObstacle=obstacle.getSize();
+
+			if (pos1._posX < posObtacle._posX + posObtacle._width && pos1._posX + pos1._width > posObtacle._posX && pos1._posY < posObtacle._posY + posObtacle._height && pos1._height + pos1._posY > posObtacle._posY) {
+				console.log('collision detecté');
 			}
-			else
-			{
+			//collision bas
+			/*
+			if (pos1._posY < posObtacle._posY+tailleObstacle._height){
+			    return 'bas';
+			}else{
 				return false;
 			}
+			//collision gauche
+			if(pos1._posX > posObtacle._posY){
+			}
+			*/
+
 	}
 
 	/*-------------------------------------------------*\
@@ -90,10 +99,8 @@ var sol = 300;
 		this._is_MaxJump = false;
 	}
 	construct_player.prototype.update = function(x,y){
-		this.Position._posY=y;
-		$("#player").css('top',y);
-		this.Position._posX=x;		
-		$("#player").css('left',x);
+		this.setPosition(x,y);	
+		$("#player").css('top',y).css('left',x);
 	}
 
 	//check
@@ -129,14 +136,16 @@ var sol = 300;
 	//recusif jump
 
 	//gravity
-	construct_player.prototype.gravity=function(posX_Ground){
-		a=this.getPosition();
+	construct_player.prototype.gravity=function(){
+		//a=this.getPosition();
 		if(!this._allowJump ){
 			this.update(this.Position._posX,this.Position._posY+1);
 		}
+		/*
 		if(a._posX>posX_Ground){
 			this.update(this.Position._posX,this.Position._posY+1);
 		}
+		*/
 	}
 	/*construct_player.prototype.restart=function(){
 		if(this.Position._posY>370){

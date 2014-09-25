@@ -24,7 +24,7 @@ var vitesse = 1;
 		Xsize_Ground=redline.getSize();
 		//ancienne fonction gravity avec en paramètre la position en X à laquelle il Tombe!
 			//(commentaire au commentaire :) le -1000 c'est pour que ca tombe bien a la fin du background qui fait 4000 et pas de redline qui fait 5000px de long j'avais la fleime de récupérer la variable css de la div prénomée "world":):)
-		joueur.gravity(Xsize_Ground._width-1000);
+		joueur.gravity();
 		joueur.checkAllowJump();
 		joueur.update(joueur.getPosition()._posX +1,joueur.getPosition()._posY);
 		$( "#container-world" ).scrollLeft( joueur.getPosition()._posX-50 );
