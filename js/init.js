@@ -2,27 +2,19 @@ $(document).ready(function() {
 
 	/* creation sol */
 	redline = new construct_ground();
-	redline.setPosition(0,300);
-	redline.setSize(3000,2);
+	redline.setPosition(0,400);
+	redline.setSize(2000,2);
 	
 	niveau0 = redline.getPosition()._posY-redline.getSize()._height;
 
 	/* creation du joueur */
 	joueur = new construct_player();
-	//joueur.init();
+	joueur.init();
 	joueurTaille = joueur.getSize();	
 	joueurPos = joueur.getPosition();
 
-	joueur.setPosition(50,0);
-
 	c1 = new construct_square();
-	c1.setPosition(0,0);
-
-	function test(){
-		console.log(joueur.getPosition());
-		setTimeout(test,1);
-	}
-	test();
+	c1.setPosition(500,niveau0-c1.getSize()._height);
 
 	/*-------------------------------------------------*\
 					Graphique
@@ -32,6 +24,8 @@ $(document).ready(function() {
 	$(".world").append('<div id="sol" class="sol"></div>');
 	// on ajoute le joueur au monde 
 	$(".world").append('<div id="player" class="player"></div>');
+	//
+	$(".world").append('<div id="c1" class="carre"></div>');
 
 
 	//on place le sol dans le monde (en css)
@@ -41,4 +35,8 @@ $(document).ready(function() {
 	//on place le joueur dans le monde (en css)
 	$("#player").css('top',joueur.getPosition()._posY).css('left',joueur.getPosition()._posX);
 	$("#player").css('width',joueur.getSize()._width).css('height',joueur.getSize()._height);
+
+	//on place les obstacles
+	$("#c1").css('top',c1.getPosition()._posY).css('left',c1.getPosition()._posX);
+	$("#c1").css('width',c1.getSize()._width).css('height',c1.getSize()._height);
 });

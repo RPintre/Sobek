@@ -10,8 +10,6 @@ var vitesse = 1;
 		if(joueur.checkAllowJump()){
 			joueur.getJump();
 			recusifJump();
-			$("#player").velocity({rotateZ: [0,-180]},{duration: vitesse*1000, sequenceQueue: false })
-
 		}else{
 			console.log('t\'es en l\'air connard !');
 		}
@@ -20,11 +18,14 @@ var vitesse = 1;
 	//boucle infini, evolution du jeu
 	function boucle(){
 		//déclaration du tableau de taille du sol 
-		//console.log(joueur.getPosition());
+		if(joueur.collision(c1) || joueur.getPosition()._posY>500){			
+			setTimeout(joueur.setPosition(0,250));
+		}
+		
+		if(!joueur._allowJump){
+			$("#player").velocity({rotateZ: [0,-180]},{duration: vitesse*500, sequenceQueue: false });
+		}
 
-		Xsize_Ground=redline.getSize();
-		//ancienne fonction gravity avec en paramètre la position en X à laquelle il Tombe!
-			//(commentaire au commentaire :) le -1000 c'est pour que ca tombe bien a la fin du background qui fait 4000 et pas de redline qui fait 5000px de long j'avais la fleime de récupérer la variable css de la div prénomée "world":):)
 		joueur.gravity();
 		joueur.checkAllowJump();
 		joueur.update(joueur.getPosition()._posX +1,joueur.getPosition()._posY);
