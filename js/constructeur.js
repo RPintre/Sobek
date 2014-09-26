@@ -2,7 +2,6 @@
 				VARIABLES
 \*-------------------------------------------------*/
 var jumpSize = 60;
-var sol = 300;
 
 /*-------------------------------------------------*\
 				CONSTRUCTEUR 
@@ -59,19 +58,6 @@ var sol = 300;
 				return false;
 			}
 	}
-	/*
-	construct_item.prototype.collision = function(obstacle){
-			var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY, w: this.getSize()._width, h: this.getSize()._height};
-			var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
-
-			if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y==rect2.y) {
-				//console.log('collision avec un obstacle');
-				return true;
-			}else{
-				return false;
-			}
-	}
-	*/
 
 	/*-------------------------------------------------*\
 					Constructeur player
@@ -105,16 +91,18 @@ var sol = 300;
 
 	//check
 	construct_player.prototype.checkAllowJump = function(obstacle){
-		
 		if(!obstacle){
 			this._allowJump=false;
-			return false;
+			//return false;
 		}else{
 			this._allowJump=true;
 			$("#player").velocity('stop');
 			$("#player").velocity({rotateZ: 0},{duration: 0, sequenceQueue: false});
-			return true;
+			//return true;
 		}
+	}
+	construct_player.prototype.dead = function(){
+		this.setPosition(0,310);
 	}
 
 	construct_player.prototype.checkIs_maxJump = function(){
@@ -170,6 +158,19 @@ var sol = 300;
 	construct_triangle.prototype = new construct_obstacle();
 	construct_triangle.prototype.constructor = construct_triangle;
 
+	//function
+	construct_triangle.prototype.collision = function(obstacle){
+		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY, w: this.getSize()._width, h: this.getSize()._height};
+		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
+
+			//si collision
+			if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
+				joueur.dead();
+				return true;
+			}else{
+				return false;
+			}
+	}
 	/*-------------------------------------------------*\
 					constructeur carre : square
 	\*-------------------------------------------------*/
@@ -186,16 +187,20 @@ var sol = 300;
 		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY, w: this.getSize()._width, h: this.getSize()._height};
 		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
 
-			if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
-				if(rect2.y+rect2.h > rect1.y && rect2.y+rect2.h-2 < rect1.y){
-					console.log('collision par dessus');
-					return 'jump';
-				}else{
-					return true;
-				}
+		//si collision
+		if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
+			//si collision par le haut
+			if(rect2.y+rect2.h > rect1.y && rect2.y+rect2.h-2 < rect1.y){
+				joueur.checkAllowJump(true);
+				return true;
+			//si collision autre que dessus
 			}else{
-				return false;
+				joueur.dead();
 			}
+		//si pas collision
+		}else{
+			return false;
+		}
 	}
 
 	/*-------------------------------------------------*\
@@ -209,6 +214,28 @@ var sol = 300;
 	//heritage
 	construct_ground.prototype = new construct_obstacle();
 	construct_ground.prototype.constructor = construct_ground;
+
+	//function
+	construct_ground.prototype.collision = function(obstacle){
+		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY, w: this.getSize()._width, h: this.getSize()._height};
+		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
+
+		//si collision
+		if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
+			//si collision par le haut
+			if(rect2.y+rect2.h > rect1.y && rect2.y+rect2.h-2 < rect1.y){
+				joueur.checkAllowJump(true);
+				return true;
+			//si collision autre que dessus
+			}else{
+				joueur.dead();
+			}
+		//si pas collision
+		}else{
+			return false;
+		}
+	}
+	
 
 
 	/*-------------------------------------------------*\
