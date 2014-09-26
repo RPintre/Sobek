@@ -135,8 +135,8 @@ var sol = 300;
 	//recusif jump
 
 	//gravity
-	construct_player.prototype.gravity=function(){
-		if(!this._allowJump ){
+	construct_player.prototype.gravity=function(){		
+		if(!this._allowJump){
 			this.update(this.Position._posX,this.Position._posY+1);
 		}
 	}
@@ -182,13 +182,17 @@ var sol = 300;
 	//function
 	construct_square.prototype.collision = function(obstacle){
 		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY, w: this.getSize()._width, h: this.getSize()._height};
-			var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
+		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
 
-			if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y==rect2.y) {
-				console.log('collision avec un obstacle');
+			/*if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y==rect2.y) {
+				console.log('collision avec un carrée');
 				return true;
-			}else if (rect2.y+rect2.h+1==rect1.y &&rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x) {
+			}else {
 				return false;
+			}*/
+			if(rect1.y==rect2.y+rect2.h && rect1.x>=rect2.x+rect2.w &&  rect1.x+rect1.w<rect2.x ){
+				console.log("collision par le dessus d'un carrée");
+
 			}
 	}
 
@@ -203,33 +207,36 @@ var sol = 300;
 	//heritage
 	construct_ground.prototype = new construct_obstacle();
 	construct_ground.prototype.constructor = construct_ground;
-	construct_ground.prototype.stopGravity=function(param){
+	/*construct_ground.prototype.stopGravity=function(param){
 		tabPos=this.getPosition();
 		tabJ=param.getPosition();
 		tailleJ=param.getSize();
 		if(tabPos._posY-2==tabJ._posY+tailleJ._height){
-			return true;
+			if(tabPos._width>tabJ._posX){
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
 		else{
 			return false;
 		}
-	}
+	}*/
 	//fonction
-	/*
+	
 	construct_ground.prototype.collision = function(obstacle){
-		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY+3, w: this.getSize()._width, h: this.getSize()._height};
+		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY, w: this.getSize()._width, h: this.getSize()._height};
 		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
 
-		if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
+		if (rect1.x-2==rect2.x+rect2.h) {
 			console.log('collision avec le sol');
-			this._allowJump=true;
-			return false;
+			return true;
 		}else{
-			this._allowJump=false;
 			return false;
 		}
 	}
-	*/
+	
 
 
 	/*-------------------------------------------------*\

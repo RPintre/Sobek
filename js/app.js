@@ -56,18 +56,18 @@ var framPerfect = [
 			if(tabObstacle[j].collision(joueur) || joueur.getPosition()._posY>500){			
 				joueur.setPosition(0,370);
 			}
-			else if(tabObstacle[j].collision(joueur) && tabObstacle[j]._type=="carre"){
+			/*else if(tabObstacle[j].collision(joueur) && tabObstacle[j]._type=="carre"){
 				joueur.checkAllowJump(tabObstacle[j].collision(joueur));
 
-			}
+			}*/
 		}
 		if(!joueur._allowJump){
 			$("#player").velocity({rotateZ: [0,-180]},{duration: vitesse*300, sequenceQueue: false });
 		}
 
 		joueur.gravity();
-		a=redline.stopGravity(joueur);
-		joueur.checkAllowJump(a);
+		testCollision=tabObstacle['0'].collision(joueur);
+		joueur.checkAllowJump(testCollision);
 		joueur.update(joueur.getPosition()._posX +1,joueur.getPosition()._posY);
 		
 		$( "#container-world" ).scrollLeft( joueur.getPosition()._posX-50 );
