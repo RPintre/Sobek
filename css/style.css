@@ -133,10 +133,6 @@ html,body{
 		display: block;
 
 		background-color: black;
-		border: 1px solid white;
-
-		width: 15px;
-		height: 15px;
 	}
 
 	.triangle{
@@ -144,8 +140,6 @@ html,body{
 		display: block;
 
 		background-color: darkblue;
-		border: 1px solid white;
-
 		width: 15px;
 		height: 15px;
 	}
@@ -162,7 +156,4 @@ html,body{
 	width: 15px;
 	height: 15px;
 	display: block;
-
-	border: 1px solid black;
-	border-radius: 1px; 
 }

@@ -49,8 +49,8 @@ var sol = 300;
 	}
 
 	//function
-	/*construct_item.prototype.collision = function(obstacle){
-			var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY+3, w: this.getSize()._width, h: this.getSize()._height};
+	construct_item.prototype.collision = function(obstacle){
+			var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY-0, w: this.getSize()._width, h: this.getSize()._height};
 			var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
 
 			if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
@@ -58,18 +58,20 @@ var sol = 300;
 			}else{
 				return false;
 			}
-	}*/
+	}
+	/*
 	construct_item.prototype.collision = function(obstacle){
 			var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY, w: this.getSize()._width, h: this.getSize()._height};
 			var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
 
 			if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y==rect2.y) {
-				console.log('collision avec un obstacle');
+				//console.log('collision avec un obstacle');
 				return true;
 			}else{
 				return false;
 			}
 	}
+	*/
 
 	/*-------------------------------------------------*\
 					Constructeur player
@@ -184,15 +186,15 @@ var sol = 300;
 		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY, w: this.getSize()._width, h: this.getSize()._height};
 		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
 
-			/*if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y==rect2.y) {
-				console.log('collision avec un carrée');
-				return true;
-			}else {
+			if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
+				if(rect2.y+rect2.h > rect1.y && rect2.y+rect2.h-2 < rect1.y){
+					console.log('collision par dessus');
+					return 'jump';
+				}else{
+					return true;
+				}
+			}else{
 				return false;
-			}*/
-			if(rect1.y==rect2.y+rect2.h && rect1.x>=rect2.x+rect2.w &&  rect1.x+rect1.w<rect2.x ){
-				console.log("collision par le dessus d'un carrée");
-
 			}
 	}
 
@@ -207,36 +209,6 @@ var sol = 300;
 	//heritage
 	construct_ground.prototype = new construct_obstacle();
 	construct_ground.prototype.constructor = construct_ground;
-	/*construct_ground.prototype.stopGravity=function(param){
-		tabPos=this.getPosition();
-		tabJ=param.getPosition();
-		tailleJ=param.getSize();
-		if(tabPos._posY-2==tabJ._posY+tailleJ._height){
-			if(tabPos._width>tabJ._posX){
-				return true;
-			}
-			else{
-				return false;
-			}
-		}
-		else{
-			return false;
-		}
-	}*/
-	//fonction
-	
-	construct_ground.prototype.collision = function(obstacle){
-		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY, w: this.getSize()._width, h: this.getSize()._height};
-		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
-
-		if (rect1.x-2==rect2.x+rect2.h) {
-			console.log('collision avec le sol');
-			return true;
-		}else{
-			return false;
-		}
-	}
-	
 
 
 	/*-------------------------------------------------*\
