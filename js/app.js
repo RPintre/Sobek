@@ -5,7 +5,7 @@
 var vitesse = 1;
 var fram = 37;
 var framPerfect = [
-200-100,
+/*200-100,
 400-fram,
 600-fram,
 800-fram,
@@ -32,7 +32,7 @@ var framPerfect = [
 2800-fram,
 2820-fram,
 2840-fram,
-3000-fram-20
+3000-fram-20*/
 ];
 
 
@@ -50,11 +50,15 @@ var framPerfect = [
 	});
 
 	//boucle infini, evolution du jeu
-	function boucle(){
+	function boucle(){		
 		//déclaration du tableau de taille du sol 
-		for(j=0;j<tabObstacle.length;j++){
+		for(j=1;j<tabObstacle.length;j++){
 			if(tabObstacle[j].collision(joueur) || joueur.getPosition()._posY>500){			
 				joueur.setPosition(0,370);
+			}
+			else if(tabObstacle[j].collision(joueur) && tabObstacle[j]._type=="carre"){
+				joueur.checkAllowJump(tabObstacle[j].collision(joueur));
+
 			}
 		}
 		if(!joueur._allowJump){
@@ -62,7 +66,8 @@ var framPerfect = [
 		}
 
 		joueur.gravity();
-		joueur.checkAllowJump();
+		a=redline.stopGravity(joueur);
+		joueur.checkAllowJump(a);
 		joueur.update(joueur.getPosition()._posX +1,joueur.getPosition()._posY);
 		
 		$( "#container-world" ).scrollLeft( joueur.getPosition()._posX-50 );

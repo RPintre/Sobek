@@ -1,12 +1,12 @@
 
 $(document).ready(function() {
 	
-	niveau0 = 399;
+	niveau0 = 398;
 
 	/* creation du joueur */
 	joueur = new construct_player();
 	joueur.init();
-	joueur.setPosition(0,300);
+	joueur.setPosition(0,250);
 	joueurTaille = joueur.getSize();	
 	joueurPos = joueur.getPosition();
 
@@ -73,7 +73,7 @@ $(document).ready(function() {
 		}else{
 			console.log('type inconnu');
 		}
-		redline = tabObstacle[0];
+		redline = tabObstacle['0'];
 	};
 	console.log(tabObstacle);
 	/*-------------------------------------------------*\

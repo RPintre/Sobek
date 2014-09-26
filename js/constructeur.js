@@ -49,11 +49,22 @@ var sol = 300;
 	}
 
 	//function
-	construct_item.prototype.collision = function(obstacle){
+	/*construct_item.prototype.collision = function(obstacle){
 			var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY+3, w: this.getSize()._width, h: this.getSize()._height};
 			var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
 
 			if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
+				return true;
+			}else{
+				return false;
+			}
+	}*/
+	construct_item.prototype.collision = function(obstacle){
+			var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY, w: this.getSize()._width, h: this.getSize()._height};
+			var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
+
+			if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y==rect2.y) {
+				console.log('collision avec un obstacle');
 				return true;
 			}else{
 				return false;
@@ -91,9 +102,9 @@ var sol = 300;
 	}
 
 	//check
-	construct_player.prototype.checkAllowJump = function(){
-		console.log(this.collision(redline));
-		if(!this.collision(redline)){
+	construct_player.prototype.checkAllowJump = function(obstacle){
+		
+		if(!obstacle){
 			this._allowJump=false;
 			return false;
 		}else{
@@ -143,6 +154,7 @@ var sol = 300;
 	//heritage
 	construct_obstacle.prototype = new construct_item();
 	construct_obstacle.prototype.constructor = construct_obstacle;
+	
 
 	/*-------------------------------------------------*\
 					constructeur triangle
@@ -169,15 +181,15 @@ var sol = 300;
 	construct_square.prototype.constructor = construct_square;
 	//function
 	construct_square.prototype.collision = function(obstacle){
-		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY+3, w: this.getSize()._width, h: this.getSize()._height};
-		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
+		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY, w: this.getSize()._width, h: this.getSize()._height};
+			var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
 
-		if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
-			console.log('collision avec un carre');
-			return false;
-		}else{
-			return false;
-		}
+			if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y==rect2.y) {
+				console.log('collision avec un obstacle');
+				return true;
+			}else if (rect2.y+rect2.h+1==rect1.y &&rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x) {
+				return false;
+			}
 	}
 
 	/*-------------------------------------------------*\
@@ -191,6 +203,17 @@ var sol = 300;
 	//heritage
 	construct_ground.prototype = new construct_obstacle();
 	construct_ground.prototype.constructor = construct_ground;
+	construct_ground.prototype.stopGravity=function(param){
+		tabPos=this.getPosition();
+		tabJ=param.getPosition();
+		tailleJ=param.getSize();
+		if(tabPos._posY-2==tabJ._posY+tailleJ._height){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	//fonction
 	/*
 	construct_ground.prototype.collision = function(obstacle){
