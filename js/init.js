@@ -57,14 +57,14 @@ $(document).ready(function() {
 			tabObstacle[i].setPosition(X,Y);
 			$(".world").append('<div id="carre'+i+'" class="carre"></div>');
 			$("#carre"+i).css('left',X).css('top',Y);
-			$("#carre"+i).css('width','20').css('height','20');
+			//$("#carre"+i).css('width','20').css('height','20');
 
 		}else if(tabObstacle[i]["_type"] == "triangle"){
 			tabObstacle[i] = new construct_triangle();
 			tabObstacle[i].setPosition(X,Y);
 			$(".world").append('<div id="triangle'+i+'" class="triangle"></div>');
-			$("#triangle"+i).css('left',X).css('top',Y);
-			$("#triangle"+i).css('width','20').css('height','20');
+			$("#triangle"+i).css('left',X).css('top',Y-10);
+			//$("#triangle"+i).css('border','10px solid transparent').css('border-bottom','20px solid transparent');
 
 		}else if(tabObstacle[i]["_type"] == "sol"){
 			tabObstacle[i] = new construct_ground();

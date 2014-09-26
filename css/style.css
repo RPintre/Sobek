@@ -127,16 +127,25 @@ html,body{
 		position: absolute;
 		display: block;
 
+		width: 20px;
+		height: 20px;
+
 		background-color: black;
 	}
 
 	.triangle{
+		z-index: 2000;
 		position: absolute;
 		display: block;
+		background-color: transparent;
 
-		background-color: darkblue;
-		width: 15px;
-		height: 15px;
+
+		width: 0;
+		height: 0;
+		background-color: transparent;
+		border: 10px solid rgba(0,0,0,0.1);
+		border-bottom:20px solid red;
+		*/
 	}
 	
 /*-------------------------------------------------*\

@@ -1,4 +1,4 @@
-var vitesse = 2;
+var vitesse = 1;
 
 // jump perfect
 var jumpUp = 60;
