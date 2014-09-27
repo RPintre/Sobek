@@ -19,7 +19,6 @@ var framPerfect = [
 */
 ];
 
-
 /*-------------------------------------------------*\
 				ACTIONS
 \*-------------------------------------------------*/
@@ -61,6 +60,7 @@ var framPerfect = [
 		$( "#container-world" ).scrollLeft( joueur.getPosition()._posX-50 );
 		
 		//jump perfect
+		
 		if($.inArray(joueur.getPosition()._posX,framPerfect)!=-1){
         	jump();
     	}
