@@ -1,19 +1,22 @@
-var vitesse = 1;
-
+var vitesse = 5;
+var mouseETA = false;
 // jump perfect
 var jumpUp = 60;
 var jumpIn = 100;
 var framPerfect = [
-
+/*
 200-jumpIn,
 200,
 300,
-700-jumpUp,
-1000-jumpUp,
-1200-jumpUp+20,
-1500-120,
-1500,
-2000
+
+700-26,
+900-26,
+
+1200-jumpIn,
+1200,
+1300,
+1470
+*/
 ];
 
 
@@ -22,12 +25,12 @@ var framPerfect = [
 \*-------------------------------------------------*/
 	/* au clic */
 	$(document).mousedown(function(){
-		if(joueur._allowJump){
-			joueur.getJump();
-			recusifJump();
-		}else{
-			console.log('saut indisponible en l\'air, veillez réessayer plus tard ;)');
-		}
+		mouseETA = true;
+		console.log('mouseETA : true');
+	});
+	$(document).mouseup(function(){
+		mouseETA = false;
+		console.log('mouseETA : false');
 	});
 
 	//boucle infini, evolution du jeu
@@ -37,11 +40,7 @@ var framPerfect = [
 		
 		//detection de la collision
 		for(j=0;j<tabObstacle.length;j++){
-			if(j==0){
-				tabObstacle[j].collision(joueur);
-			}else{
-				tabObstacle[j].collision(joueur);
-			}
+			tabObstacle[j].collision(joueur);
 		}
 
 		if(joueur.getPosition()._posY>500){			
@@ -50,7 +49,7 @@ var framPerfect = [
 
 		//lance la rotation
 		if(!joueur._allowJump){
-				$("#player").velocity({rotateZ: [0,-180]},{duration: vitesse*500, sequenceQueue: false });
+				$("#player").velocity({rotateZ: [0,-180]},{duration: vitesse*100, sequenceQueue: false });
 			}
 
 		//gestion de la grativé
@@ -63,17 +62,25 @@ var framPerfect = [
 		
 		//jump perfect
 		if($.inArray(joueur.getPosition()._posX,framPerfect)!=-1){
-        	if(joueur._allowJump){
-				joueur.getJump();
-				recusifJump();
-				console.log('saut programmé !');
-			}
+        	jump();
     	}
     	
+    	if(mouseETA){
+			jump();
+		}
     	//repeat
+    	checkfps();
 		setTimeout(boucle,vitesse);
 	};
 
+	function jump(){
+		if(joueur._allowJump){
+			joueur.getJump();
+			recusifJump();
+		}else{
+			console.log('saut indisponible en l\'air, veillez réessayer plus tard ;)');
+		}
+	}
 	//boucle du saut
 	function recusifJump(){
 		if(!joueur.checkIs_maxJump()){
@@ -81,3 +88,12 @@ var framPerfect = [
 			setTimeout(recusifJump,vitesse);
 		}
 	}
+
+var lastLoop = new Date;
+function checkfps() { 
+    var thisLoop = new Date;
+    var fps = (thisLoop - lastLoop);
+    lastLoop = thisLoop;
+    $('#console').html('fps : '+fps);
+    return fps;
+}

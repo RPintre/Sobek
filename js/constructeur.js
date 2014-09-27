@@ -162,14 +162,18 @@ var jumpSize = 60;
 	construct_triangle.prototype.collision = function(obstacle){
 		var rect1 = {x: this.getPosition()._posX, y: this.getPosition()._posY, w: this.getSize()._width, h: this.getSize()._height};
 		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
-
+		
+		
 			//si collision
 			if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
-				joueur.dead();
-				return true;
+				if(rect1.x + rect1.w/2 == rect2.x || rect1.x + rect1.w/2 == rect2.x + rect2.w){
+					joueur.dead();
+				}
 			}else{
 				return false;
 			}
+		
+		
 	}
 	/*-------------------------------------------------*\
 					constructeur carre : square
@@ -223,7 +227,7 @@ var jumpSize = 60;
 		//si collision
 		if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
 			//si collision par le haut
-			if(rect2.y+rect2.h > rect1.y && rect2.y+rect2.h-2 < rect1.y){
+			if(rect2.y+rect2.h > rect1.y && rect2.y+rect2.h < rect1.y+2){
 				joueur.checkAllowJump(true);
 				return true;
 			//si collision autre que dessus

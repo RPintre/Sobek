@@ -21,33 +21,18 @@ $(document).ready(function() {
 		{_type : "carre",	_posX:469,_posY:niveau0-50},
 
 		//saut de 2 cases en hauteur
-		{_type : "carre",	_posX:700,_posY:niveau0},
-		{_type : "triangle",_posX:700,_posY:niveau0-20},
+		{_type : "triangle",_posX:700,_posY:niveau0},
+		{_type : "triangle",_posX:900,_posY:niveau0},
 
-		// saut de 2 case en longueur
-		{_type : "triangle",_posX:1000,_posY:niveau0},
-		{_type : "triangle",_posX:1020,_posY:niveau0},
-
-		//saut de 3 case en longueur
-		{_type : "triangle",_posX:1200,_posY:niveau0},
-		{_type : "triangle",_posX:1220,_posY:niveau0},
-		{_type : "triangle",_posX:1240,_posY:niveau0},
-
-		//saut de 3 case en longueur avec appuis
-		{_type : "carre",	_posX:1500,_posY:niveau0},		
-		{_type : "triangle",_posX:1520,_posY:niveau0},
-		{_type : "triangle",_posX:1540,_posY:niveau0},
-		{_type : "triangle",_posX:1560,_posY:niveau0},
-
-		//test passer dessous
-		{_type : "triangle",_posX:1760,_posY:niveau0-20},
-		{_type : "carre",	_posX:1780,_posY:niveau0-20},
-
+		{_type : "carre",	_posX:1200,_posY:niveau0-20},
+		{_type : "carre",	_posX:1300,_posY:niveau0-50},
+		{_type : "carre",	_posX:1400,_posY:niveau0-80},
+		{_type : "carre",	_posX:1469,_posY:niveau0-50},
 		//nouveau sol
-		{_type : "sol",		_posX:2080,_posY:niveau0},
+		{_type : "sol",		_posX:1600,_posY:niveau0},
 
 		//dead
-		{_type : "triangle",_posX:2300,_posY:niveau0-20}
+		{_type : "triangle",_posX:2000,_posY:niveau0-20}
 	);
 	for (var i = 0; i < tabObstacle.length; i++) {
 		var X = tabObstacle[i]["_posX"];
@@ -69,10 +54,10 @@ $(document).ready(function() {
 		}else if(tabObstacle[i]["_type"] == "sol"){
 			tabObstacle[i] = new construct_ground();
 			tabObstacle[i].setPosition(X,Y);
-			tabObstacle[i].setSize(2000,20);
+			tabObstacle[i].setSize(1400,20);
 			$(".world").append('<div id="sol'+i+'" class="sol"></div>');
 			$("#sol"+i+"").css('left',X).css('top',Y);
-			$("#sol"+i+"").css('width','2000').css('height','1');
+			$("#sol"+i+"").css('width','1400').css('height','1');
 		}else{
 			console.log('type inconnu');
 		}
