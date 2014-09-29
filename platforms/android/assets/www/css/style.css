@@ -1,0 +1,163 @@
+/*-------------------------------------------------*\
+				1.	box 
+				2.	border 
+				3.	background
+				4.	text
+				5.	other
+\*-------------------------------------------------*/
+/*-------------------------------------------------*\
+				BASE
+\*-------------------------------------------------*/
+@font-face {
+    font-family: arial;
+}
+
+html,body{
+	height: 100%;
+
+	margin: 0;
+	padding: 0;
+
+	font-family: arial;
+	font-size: 16px;
+	line-height: 1.4rem;
+}
+
+ /*scrollbar design */
+*::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+ 
+*::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 0 rgba(0,0,0,1); 
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 5px;
+  outline: 0px solid #009688;
+}
+
+
+/*-------------------------------------------------*\
+				console
+\*-------------------------------------------------*/
+#console{
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 30px;
+	width: 50px;
+	padding: 10px;
+	z-index: 200000;
+	color: green;
+	text-align: left;
+}
+
+
+/*-------------------------------------------------*\
+				world
+\*-------------------------------------------------*/
+.container-world{
+	display: block;
+
+	position: absolute;
+		 overflow: auto;
+
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.world{
+	width: 4000px;
+	height: 99%;
+	position: relative;
+	left: 0;
+	top: 0;
+
+	display: block;
+
+	background: #2ab0ed; /* Old browsers */
+	background: -moz-linear-gradient(-0deg, #2ab0ed 0%, #9fd8ef 49%, #bfe8f9 50%, #e4f5fc 100%); /* FF3.6+ */
+	
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+    /*background-attachment: fixed;*/
+}
+/*-------------------------------------------------*\
+				obstacle
+\*-------------------------------------------------*/
+	/*-------------------------------------------------*\
+					sol
+	\*-------------------------------------------------*/
+	.sol{
+		position: absolute;
+		display: block;
+
+		height: 2px;
+		
+		left: 0;
+		right: 0;
+		top: 70%;
+
+		background-color: darkred;
+	}
+
+	.limit{
+		position: absolute;
+		display: block;
+
+		opacity: 0.3;
+
+		height: 2px;
+		
+		left: 0;
+		right: 0;
+		top: 70%;
+
+		background-color: darkblue;
+	}
+	/*-------------------------------------------------*\
+					Carre
+	\*-------------------------------------------------*/
+	.carre{
+		position: absolute;
+		display: block;
+
+		width: 20px;
+		height: 20px;
+
+		background-color: black;
+	}
+
+	.triangle{
+		z-index: 2000;
+		position: absolute;
+		display: block;
+		background-color: transparent;
+
+
+		width: 0;
+		height: 0;
+		background-color: transparent;
+		border: 10px solid rgba(0,0,0,0);
+		border-bottom:20px solid red;
+	}
+	
+/*-------------------------------------------------*\
+				joueur
+\*-------------------------------------------------*/
+.player{
+	position: absolute;
+		
+	background-color:#57ffd8;
+	background-image: radial-gradient(50% 50%, circle closest-side, #57ffd8, #7da0ff 80%);
+	background-position: center;
+	width: 15px;
+	height: 15px;
+	display: block;
+}
