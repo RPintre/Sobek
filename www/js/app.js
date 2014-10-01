@@ -31,6 +31,11 @@ var framPerfect = [
 		mouseETA = false;
 		console.log('mouseETA : false');
 	});
+	$(".container-world").on("tap",function(){
+		mouseETA = true;
+		console.log('mouseETA : true');
+	});
+
 
 	//boucle infini, evolution du jeu
 	function boucle(){
