@@ -39,8 +39,7 @@ var framPerfect = [
 
 	//boucle infini, evolution du jeu
 	function boucle(){
-		//on initialise joueur._allowJump
-		joueur.checkAllowJump(false);		
+		//on initialise joueur._allowJump			
 		
 		//detection de la collision
 		for(j=0;j<tabObstacle.length;j++){
@@ -70,9 +69,10 @@ var framPerfect = [
         	jump();
     	}
     	
-    	if(mouseETA){
+    	if(joueur._allowJump && mouseETA){
 			jump();
 		}
+
     	//repeat
     	checkfps();
 		setTimeout(boucle,vitesse);
