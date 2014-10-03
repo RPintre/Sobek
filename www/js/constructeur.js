@@ -85,8 +85,8 @@ var jumpSize = 60;
 		this._is_MaxJump = false;
 	}
 	construct_player.prototype.update = function(x,y){
-		this.setPosition(x,y);	
 		$("#player").css('top',y).css('left',x);
+		this.setPosition(x,y);	
 	}
 
 	//check
@@ -102,7 +102,12 @@ var jumpSize = 60;
 		}
 	}
 	construct_player.prototype.dead = function(){
+		$("#player").css('top',0).css('left',310);
 		this.setPosition(0,310);
+		this._is_maxJump=false;
+		this._allowJump=true;
+		$.mobile.silentScroll($("#container_world").css("left"));
+
 	}
 
 	construct_player.prototype.checkIs_maxJump = function(){
@@ -225,7 +230,7 @@ var jumpSize = 60;
 		var rect2 = {x: obstacle.getPosition()._posX, y: obstacle.getPosition()._posY, w: obstacle.getSize()._width, h: obstacle.getSize()._height};
 
 		//si collision
-		if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w > rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
+		if (rect1.x < rect2.x + rect2.w && rect1.x + rect1.w >= rect2.x && rect1.y < rect2.y + rect2.h && rect1.h + rect1.y > rect2.y) {
 			//si collision par le haut
 			if(rect2.y+rect2.h > rect1.y && rect2.y+rect2.h < rect1.y+2){
 				joueur.checkAllowJump(true);

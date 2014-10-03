@@ -23,24 +23,29 @@ var framPerfect = [
 				ACTIONS
 \*-------------------------------------------------*/
 	/* au clic */
-	$(document).mousedown(function(){
+	/*$(document).mousedown(function(){
 		mouseETA = true;
 		console.log('mouseETA : true');
 	});
 	$(document).mouseup(function(){
 		mouseETA = false;
 		console.log('mouseETA : false');
-	});
-	$(".container-world").on("tap",function(){
-		mouseETA = true;
+	});*/
+	
+	$(document).on("tap",function(){		
 		console.log('mouseETA : true');
+		Jump()
+	});
+	$(document).on("taphold",function(){		
+		console.log('mouseETA : true');
+		Jump()
 	});
 
 
 	//boucle infini, evolution du jeu
 	function boucle(){
 		//on initialise joueur._allowJump			
-		
+		joueur.checkAllowJump(false);
 		//detection de la collision
 		for(j=0;j<tabObstacle.length;j++){
 			tabObstacle[j].collision(joueur);
@@ -48,6 +53,7 @@ var framPerfect = [
 
 		if(joueur.getPosition()._posY>500){			
 			joueur.dead();
+			mouseETA=false;
 		}
 
 		//lance la rotation
@@ -61,30 +67,30 @@ var framPerfect = [
 
 		//avancé dans le monde
 		joueur.update(joueur.getPosition()._posX +1,joueur.getPosition()._posY);
-		$( "#container-world" ).scrollLeft( joueur.getPosition()._posX-50 );
+		$( ".container-world" ).scrollLeft( joueur.getPosition()._posX-50 );
 		
 		//jump perfect
-		
 		if($.inArray(joueur.getPosition()._posX,framPerfect)!=-1){
-        	jump();
-    	}
+        	Jump();
+    	}		
     	
-    	if(joueur._allowJump && mouseETA){
-			jump();
-		}
+    	
 
     	//repeat
     	checkfps();
 		setTimeout(boucle,vitesse);
 	};
 
-	function jump(){
+	function Jump(){
 		if(joueur._allowJump){
 			joueur.getJump();
 			recusifJump();
+			
+
 		}else{
 			console.log('saut indisponible en l\'air, veillez réessayer plus tard ;)');
 		}
+		
 	}
 	//boucle du saut
 	function recusifJump(){

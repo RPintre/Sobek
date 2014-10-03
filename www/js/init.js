@@ -1,8 +1,8 @@
 
 $(document).ready(function() {
-	
+	$.mobile.touchOverflowEnabled = true;
+	$.mobile.silentScroll($("#container_world").css("width"));
 	niveau0 = 381;
-
 	/* creation du joueur */
 	joueur = new construct_player();
 	joueur.init();
